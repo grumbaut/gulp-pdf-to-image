@@ -12,6 +12,7 @@ interface Config {
 	scale?: number;
 	filePrefix?: string;
 	format?: OutputFormat;
+	disableFontFace?: boolean;
 }
 
 interface ImageData {
@@ -43,12 +44,13 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 		const cMapPacked = true;
 		const origin = path.basename(file.path, path.extname(file.path));
 		const imageData: ImageData[] = [];
-		
+		const { disableFontFace = true } = config;
 		const splitPdf = async () => await pdfjs
 			.getDocument({
 				data,
 				cMapUrl,
 				cMapPacked,
+				disableFontFace,
 			})
 			.promise
 			.then(async (doc) => {

@@ -12,6 +12,14 @@
     "release:dryrun": "standard-version --dry-run",
     "npm:publish": "npm run release && npm publish"
   },
+  "homepage": "https://github.com/grumbaut/gulp-pdf-to-image#readme",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/grumbaut/gulp-pdf-to-image.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grumbaut/gulp-pdf-to-image/issues"
+  },
   "directories": {
     "lib": "lib"
   },

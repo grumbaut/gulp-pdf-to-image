@@ -23,7 +23,7 @@ gulp.task('pdfConvert', function() {
 | Option | Value | Default | Description |
 | --- | --- | --- | --- |
 | `scale` | `number` | `1.0` | Scales the page's viewport. |
-| `format` | `'gif'`\|`'tiff'`\|`'jpg'`\|`'jpeg'`/`'png'` | `'png'` | Image output format. |
+| `format` | `'gif'`\|`'tiff'`\|`'jpg'`\|`'jpeg'`\|`'png'` | `'png'` | Image output format. |
 | `filePrefix` | `string` | `undefined` | Prefix to use for image filenames. Defaults to PDF title. |
 
 ## Credits

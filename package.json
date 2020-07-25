@@ -1,7 +1,7 @@
 {
   "name": "gulp-pdf-to-image",
   "version": "0.1.0",
-  "description": "Gulp plugin to split a PDF into separate image files",
+  "description": "Gulp plugin to split a PDF into separate image files.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

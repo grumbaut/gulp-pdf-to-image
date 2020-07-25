@@ -39,13 +39,13 @@ const generateVinyl = (buffer, config: Config, data: ImageData): Vinyl => {
 
 const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transform({
 	objectMode: true,
-	async transform(file, enc, cb) {
+	transform(file, enc, cb) {
 		const data = new Uint8Array(file.contents);
 		const cMapPacked = true;
 		const origin = path.basename(file.path, path.extname(file.path));
 		const imageData: ImageData[] = [];
 		const { disableFontFace = true } = config;
-		const splitPdf = async () => await pdfjs
+		const splitPdf = (): Promise<void> => pdfjs
 			.getDocument({
 				data,
 				cMapUrl,
@@ -53,7 +53,7 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 				disableFontFace,
 			})
 			.promise
-			.then(async (doc) => {
+			.then((doc) => {
 				const { numPages } = doc;
 				const promises = [];
 				const split = async (pageNum): Promise<void> => {

@@ -27,7 +27,7 @@ const generateVinyl = (buffer, config: Config, pageNum: number, origin: string):
 	return vinyl;
 };
 
-const pdfToImage = (config: Config): NodeJS.ReadWriteStream => new Transform({
+const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transform({
 	objectMode: true,
 	async transform(file, enc, cb) {
 		const data = new Uint8Array(file.contents);

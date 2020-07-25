@@ -9,7 +9,7 @@
     "build": "tsc --declaration",
     "prepare": "npm run build",
     "release": "standard-version -a && git push --follow-tags origin master",
-    "release:dryrun": "npm run release -- --dry-run",
+    "release:dryrun": "standard-version -- --dry-run",
     "npm:publish": "npm run release && npm publish"
   },
   "directories": {

@@ -4,6 +4,7 @@ import { Transform } from 'stream';
 import PluginError = require('plugin-error');
 import Vinyl = require('vinyl');
 import CanvasFactory = require('./CanvasFactory');
+import { PDFPageProxy } from 'pdfjs-dist';
 
 type OutputFormat = 'gif' | 'tiff' | 'jpg' | 'jpeg' | 'png';
 
@@ -21,8 +22,10 @@ interface ImageData {
 
 const cMapUrl = '../node_modules/pdfjs-dist/cmaps/';
 
-const generateVinyl = (buffer, config: Config, pageNum: number, origin: string): Vinyl => {
+const generateVinyl = (buffer, config: Config, data: ImageData): Vinyl => {
 	const { filePrefix, format = 'png' } = config;
+	const { pageNum, origin } = data;
+
 	const filename = filePrefix
 		? `${filePrefix}_page-${pageNum}.${format}`
 		: `${path.basename(origin)}_page-${pageNum}.${format}`;

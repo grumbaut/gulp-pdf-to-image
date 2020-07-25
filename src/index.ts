@@ -70,7 +70,7 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 				return Promise.all(promises);
 			});
 			
-		const convertPdf = async (data: ImageData) => {
+		const convertPdf = async (data: ImageData): Promise<void> => {
 			const { scale = 1.0 } = config;
 			const { page } = data;
 			const viewport = page.getViewport({ scale });

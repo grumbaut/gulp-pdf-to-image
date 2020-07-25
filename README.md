@@ -13,7 +13,10 @@ const pdfToImage = require('gulp-pdf-to-image');
 
 gulp.task('pdfConvert', function() {
   return gulp.src('./*.pdf')
-    .pipe(pdf2Image())
+    .pipe(pdf2Image({
+      scale: 2.0,
+      format: 'jpg',
+    }))
     .pipe(gulp.dest('./'));
 });
 ```

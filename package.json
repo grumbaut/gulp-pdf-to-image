@@ -10,7 +10,7 @@
     "prepare": "npm run build",
     "release": "standard-version -a",
     "release:dryrun": "npm run release -- --dry-run",
-    "npmPublish": "npm run release && npm publish"
+    "npm:publish": "npm run release && npm publish"
   },
   "directories": {
     "lib": "lib"

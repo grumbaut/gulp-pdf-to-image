@@ -13,6 +13,12 @@ interface Config {
 	format?: OutputFormat;
 }
 
+interface ImageData {
+	page: PDFPageProxy;
+	pageNum: number;
+	origin: string;
+}
+
 const cMapUrl = '../node_modules/pdfjs-dist/cmaps/';
 
 const generateVinyl = (buffer, config: Config, pageNum: number, origin: string): Vinyl => {
@@ -33,7 +39,7 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 		const data = new Uint8Array(file.contents);
 		const cMapPacked = true;
 		const origin = path.basename(file.path, path.extname(file.path));
-		const pages = [];
+		const imageData: ImageData[] = [];
 		
 		const splitPdf = async () => await pdfjs
 			.getDocument({
@@ -47,7 +53,7 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 				const promises = [];
 				const split = async (pageNum): Promise<void> => {
 					const page = await doc.getPage(pageNum);
-					pages.push({
+					imageData.push({
 						page,
 						pageNum,
 						origin,
@@ -61,10 +67,9 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 					.catch((err) => cb(new PluginError(err)));
 			});
 			
-		const convertPdf = async (file) => {
+		const convertPdf = async (data: ImageData) => {
 			const { scale = 1.0 } = config;
-			const { page, pageNum, origin } = file;
-			const viewport = page.getViewport({ scale });
+			const { page } = data;
 			const canvasFactory = new CanvasFactory();
 			const canvas = canvasFactory.create(viewport.width, viewport.height);
 			const renderContext = {
@@ -73,11 +78,11 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 				canvasFactory,
 			};
 			await page.render(renderContext).promise;
-			this.push(generateVinyl(canvas.canvas.toBuffer(), config, pageNum, origin));
+			this.push(generateVinyl(canvas.canvas.toBuffer(), config, data));
 		};
 		
 		splitPdf()
-			.then(() => Promise.all(pages.map(convertPdf)))
+			.then(() => Promise.all(imageData.map(convertPdf)))
 			.then(() => cb())
 			.catch((err) => cb(new PluginError(err)));
 	},

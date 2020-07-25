@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "npm run build -- --watch",
     "build": "tsc --declaration",
-    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
     "release": "standard-version -a",
     "release:dryrun": "npm run release -- --dry-run",
     "npmPublish": "npm run release && npm publish"

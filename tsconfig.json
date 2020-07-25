@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		"moduleResolution": "Node",
+		"outDir": "./lib",
+		"lib": [ "ES2018" ]
+	},
+	"include": [ "./src/*"]
+}

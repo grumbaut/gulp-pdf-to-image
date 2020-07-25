@@ -1,6 +1,6 @@
 {
   "name": "gulp-pdf-to-image",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gulp plugin to split a PDF into separate image files.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -14,8 +14,8 @@
   },
   "homepage": "https://github.com/grumbaut/gulp-pdf-to-image#readme",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/grumbaut/gulp-pdf-to-image.git"
+    "type": "git",
+    "url": "https://github.com/grumbaut/gulp-pdf-to-image.git"
   },
   "bugs": {
     "url": "https://github.com/grumbaut/gulp-pdf-to-image/issues"

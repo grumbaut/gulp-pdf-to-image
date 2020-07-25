@@ -87,7 +87,7 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 		splitPdf()
 			.then(() => Promise.all(imageData.map(convertPdf)))
 			.then(() => cb())
-			.catch((err) => cb(new PluginError(err)));
+			.catch((err) => cb(new PluginError('pdf-to-image', err)));
 	},
 });
 

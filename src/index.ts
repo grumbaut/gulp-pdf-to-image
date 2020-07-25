@@ -65,14 +65,13 @@ const pdfToImage = (config: Config = {}): NodeJS.ReadWriteStream => new Transfor
 				for (let i = 1; i <= numPages; i++) {
 					promises.push(split(i));
 				}
-				await Promise
-					.all(promises)
-					.catch((err) => cb(new PluginError(err)));
+				return Promise.all(promises);
 			});
 			
 		const convertPdf = async (data: ImageData) => {
 			const { scale = 1.0 } = config;
 			const { page } = data;
+			const viewport = page.getViewport({ scale });
 			const canvasFactory = new CanvasFactory();
 			const canvas = canvasFactory.create(viewport.width, viewport.height);
 			const renderContext = {

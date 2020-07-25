@@ -28,6 +28,7 @@ gulp.task('pdfConvert', function() {
 | `scale` | `number` | `1.0` | Scales the page's viewport. |
 | `format` | `'gif'`\|`'tiff'`\|`'jpg'`\|`'jpeg'`\|`'png'` | `'png'` | Image output format. |
 | `filePrefix` | `string` | `undefined` | Prefix to use for image filenames. Defaults to PDF title. |
+| `disableFontFace` | `boolean` | `true` | Set to `false` to use system fonts. Set to `true` to use embedded fonts. |
 
 ## Credits
 
